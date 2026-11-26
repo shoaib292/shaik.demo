@@ -3,8 +3,7 @@ const taskInput = document.getElementById("taskInput");
 const addButton = document.getElementById("addButton");
 const taskList = document.getElementById("taskList");
 
-// Add a new task
-addButton.addEventListener("click", function () {
+function addTask() {
     const taskText = taskInput.value.trim();
 
     if (taskText === "") {
@@ -12,18 +11,21 @@ addButton.addEventListener("click", function () {
         return;
     }
 
-    // Create a new list item
     const li = document.createElement("li");
 
     const taskName = document.createElement("span");
     taskName.textContent = taskText;
 
-    // Complete task by clicking its text
-    taskName.addEventListener("click", function () {
+    const completeButton = document.createElement("button");
+    completeButton.textContent = "Complete";
+
+    completeButton.addEventListener("click", function () {
         li.classList.toggle("completed");
+
+        completeButton.textContent =
+            li.classList.contains("completed") ? "Undo" : "Complete";
     });
 
-    // Delete button
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete";
 
@@ -32,17 +34,20 @@ addButton.addEventListener("click", function () {
     });
 
     li.appendChild(taskName);
+    li.appendChild(completeButton);
     li.appendChild(deleteButton);
 
+    // Add task without removing previous tasks
     taskList.appendChild(li);
 
-    // Clear input
     taskInput.value = "";
-});
+    taskInput.focus();
+}
 
-// Add task when Enter is pressed
+addButton.addEventListener("click", addTask);
+
 taskInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-        addButton.click();
+        addTask();
     }
 });
