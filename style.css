@@ -1,45 +1,267 @@
 
-/* Multiple task layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.container {
+    background: white;
+    width: 100%;
+    max-width: 650px;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+h1 {
+    color: #243b55;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #777;
+}
+
+.theme-btn {
+    background: #243b55;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Statistics */
+
+.task-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.stat-box {
+    background: #edf2ff;
+    padding: 18px 8px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stat-box h3 {
+    color: #2463eb;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.stat-box p {
+    color: #555;
+    font-size: 13px;
+}
+
+/* Input */
+
+.input-section {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2463eb;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+#addButton {
+    background: #2463eb;
+    color: white;
+    padding: 12px 20px;
+    font-weight: bold;
+}
+
+#addButton:hover {
+    background: #1748b5;
+}
+
+/* Task List */
+
 #taskList {
-    margin-top: 25px;
+    list-style: none;
+    margin-top: 22px;
     max-height: 350px;
     overflow-y: auto;
-    padding: 5px;
 }
 
 #taskList li {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 10px;
-    flex-wrap: wrap;
+    background: #f1f4f9;
     padding: 12px;
     margin-bottom: 12px;
-    background: #f1f4f9;
-    border-radius: 8px;
-    transition: 0.3s;
+    border-radius: 9px;
+    flex-wrap: wrap;
 }
 
-#taskList li span {
+.task-name {
     flex: 1;
     min-width: 100px;
     overflow-wrap: anywhere;
+    color: #333;
+}
+
+#taskList li.completed .task-name {
+    text-decoration: line-through;
+    color: gray;
 }
 
 #taskList li.completed {
     background: #d9fbe5;
 }
 
-#taskList li.completed span {
-    text-decoration: line-through;
-    color: gray;
+.task-button {
+    padding: 8px 11px;
+    color: white;
+    font-size: 12px;
 }
 
-#taskList li button {
-    padding: 8px 12px;
+.complete-btn {
+    background: #16a34a;
+}
+
+.edit-btn {
+    background: #e59b18;
+}
+
+.delete-btn {
+    background: #dc2626;
+}
+
+.task-button:hover {
+    opacity: 0.8;
+}
+
+#emptyMessage {
+    text-align: center;
+    color: #999;
+    margin: 25px 0;
+}
+
+footer {
+    text-align: center;
+    color: #999;
+    margin-top: 25px;
     font-size: 13px;
 }
 
-#taskList li button:hover {
-    opacity: 0.8;
+/* Dark Mode */
+
+body.dark {
+    background: linear-gradient(135deg, #080d18, #182a40);
+}
+
+body.dark .container {
+    background: #1e293b;
+}
+
+body.dark h1,
+body.dark .task-name {
+    color: white;
+}
+
+body.dark header p,
+body.dark .stat-box p {
+    color: #cbd5e1;
+}
+
+body.dark .stat-box {
+    background: #334155;
+}
+
+body.dark #taskList li {
+    background: #334155;
+}
+
+body.dark #taskList li.completed {
+    background: #14532d;
+}
+
+body.dark #taskList li.completed .task-name {
+    color: #bbf7d0;
+}
+
+body.dark input {
+    background: #334155;
+    color: white;
+    border-color: #64748b;
+}
+
+body.dark input::placeholder {
+    color: #cbd5e1;
+}
+
+body.dark #emptyMessage {
+    color: #cbd5e1;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .stat-box h3 {
+        font-size: 20px;
+    }
+
+    .stat-box p {
+        font-size: 11px;
+    }
+
+    .input-section {
+        gap: 6px;
+    }
+
+    #addButton {
+        padding: 10px;
+    }
 }
